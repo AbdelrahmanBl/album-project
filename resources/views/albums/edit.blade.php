@@ -25,7 +25,8 @@
                                 <label class="col-2" for="">
                                     {{ __('Album Name') }}
                                 </label>
-                                <input class="form-control col-9" name="name" value="{{ $album->name }}" type="text">
+                                <input class="form-control col-9" name="name" required value="{{ old('name') ?? $album->name }}" type="text">
+                                @include('components.error', ['field' => 'name'])
                             </div>
                         </div>
                     </form>

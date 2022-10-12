@@ -21,7 +21,7 @@ trait UploadFileTrait
         if($file instanceof UploadedFile) {
             $this->deleteFile($field);
 
-            return $file->store("public/{$dir}");
+            return $file->store($dir);
         }
 
         return $this->attributes[$field] ?? NULL;

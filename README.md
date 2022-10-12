@@ -2,27 +2,10 @@
 
 <h1>You must run this command : </h1>
 <ol>
-    <li>
-        composer install
-    </li>
-    
-    <li>
-        php artisan migrate
-    </li>
-    
-    <li>
-        php artisan storage:link
-    </li>
-    
-    <li>
-        npm install
-    </li>
-    
-    <li>
-        npm run dev
-    </li>
-    
-    <li>
-        php artisan serve
-    </li>
+    <li>composer install</li>
+    <li>php artisan migrate</li>
+    <li>php artisan storage:link</li>
+    <li>npm install</li>
+    <li>npm run dev</li>
+    <li>php artisan serve</li>
 </ol>

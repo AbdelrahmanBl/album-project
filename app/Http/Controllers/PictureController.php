@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use App\Enums\MessageType;
 use App\Http\Requests\PictureRequest;
 use App\Models\Picture;
@@ -13,9 +14,9 @@ class PictureController extends Controller
      *
      * @param  \App\Http\Requests\PictureRequest  $request
      * @param  \App\Models\Picture                $picture
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(PictureRequest $request, Picture $picture)
+    public function update(PictureRequest $request, Picture $picture): RedirectResponse
     {
         $picture->update($request->validated());
 
@@ -29,9 +30,9 @@ class PictureController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Picture  $picture
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Picture $picture)
+    public function destroy(Picture $picture): RedirectResponse
     {
         $picture->delete();
 

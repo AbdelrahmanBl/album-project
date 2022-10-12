@@ -8,15 +8,17 @@ use App\Models\Album;
 use App\Models\Picture;
 use App\Services\CopyAlbumImages;
 use App\Services\DeleteAlbumImages;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\View;
 
 class AlbumController extends Controller
 {
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
-    public function create()
+    public function create(): View
     {
         return view('albums.create');
     }
@@ -25,9 +27,9 @@ class AlbumController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\AlbumRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(AlbumRequest $request)
+    public function store(AlbumRequest $request): RedirectResponse
     {
         $album = Album::query()->create(array_merge($request->validated(), [
             'user_id'   => auth()->user()->id,
@@ -40,9 +42,9 @@ class AlbumController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Album  $album
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
-    public function edit(Album $album)
+    public function edit(Album $album): View
     {
         return view('albums.edit', compact('album'));
     }
@@ -52,9 +54,9 @@ class AlbumController extends Controller
      *
      * @param  \App\Http\Requests\AlbumRequest  $request
      * @param  \App\Models\Album                $album
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(AlbumRequest $request, Album $album)
+    public function update(AlbumRequest $request, Album $album): RedirectResponse
     {
         $album->update($request->validated());
 
@@ -74,9 +76,9 @@ class AlbumController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Album        $album
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Album $album)
+    public function destroy(Album $album): RedirectResponse
     {
         if(request('REMOVE')) {
             (new DeleteAlbumImages($album))->remove();
